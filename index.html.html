@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovateTech | Enterprise Leadership Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #2563eb;
+            --accent: #38bdf8;
+            --success: #10b981;
+            --bg-body: #f1f5f9;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        /* Hero Ultra-Modern */
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,41,59,0.8) 100%),
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Nav Glassmorphism */
+        nav {
+            position: sticky;
+            top: 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin: -40px auto 0;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--secondary); transform: translateY(-2px); }
+
+        .container { max-width: 1200px; margin: 80px auto; padding: 0 25px; }
+
+        /* Section Styling */
+        section { margin-bottom: 120px; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+        .section-header div { width: 80px; height: 5px; background: var(--secondary); margin: 0 auto; border-radius: 10px; }
+
+        /* Cards interactivas */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+            border-color: var(--secondary);
+        }
+
+        .icon-box {
+            width: 60px; height: 60px; background: #eff6ff;
+            border-radius: 15px; display: flex; align-items: center;
+            justify-content: center; font-size: 1.5rem; margin-bottom: 25px;
+            color: var(--secondary);
+        }
+
+        /* Plan de Coaching Profesional */
+        .coaching-timeline {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .step:last-child { border: none; margin-bottom: 0; }
+
+        .step-num {
+            min-width: 60px; height: 60px; background: var(--primary);
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-weight: 800;
+            box-shadow: 0 10px 20px rgba(15,23,42,0.2);
+        }
+
+        /* KPI Dashboard */
+        .kpi-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .kpi-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+        }
+
+        .progress-bar {
+            height: 10px; background: #e2e8f0; border-radius: 10px;
+            margin: 20px 0 10px; overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%; background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 10px;
+        }
+
+        /* Testimonials Glass */
+        .testi-section { background: var(--primary); padding: 100px 0; color: white; border-radius: 40px; }
+
+        /* Form Advanced */
+        .form-wrapper {
+            background: white;
+            padding: 60px;
+            border-radius: 35px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        input, select, textarea {
+            width: 100%; padding: 16px; border-radius: 12px;
+            border: 1px solid #e2e8f0; background: #f8fafc;
+            font-size: 1rem; margin-top: 8px; transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--secondary); outline: none; background: white; }
+
+        .btn-submit {
+            background: var(--secondary); color: white; padding: 20px;
+            border: none; border-radius: 12px; font-weight: 800;
+            width: 100%; cursor: pointer; transition: 0.3s;
+            margin-top: 30px; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .btn-submit:hover { background: #1d4ed8; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37,99,235,0.3); }
+
+        footer { text-align: center; padding: 60px; color: #64748b; }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            nav { display: none; } /* En móvil simplificar */
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="hero-content" data-aos="fade-up">
+        <h1>Transformación <br> InnovateTech Solutions</h1>
+        <p>Potenciando el liderazgo humano en la era de la tecnología exponencial.</p>
+    </div>
+</header>
+
+<nav data-aos="zoom-in">
+    <a href="#diagnostico">Estrategia</a>
+    <a href="#programa">Coaching</a>
+    <a href="#kpis">Métricas</a>
+    <a href="#inscripcion">Inscripción</a>
+</nav>
+
+<div class="container">
+    
+    <section id="diagnostico">
+        <div class="section-header" data-aos="fade-down">
+            <h2>Pilares de Acción Integral</h2>
+            <div></div>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box">🎯</div>
+                <h3>Liderazgo Transformacional</h3>
+                <p>Implementación del modelo Bass & Riggio para inspirar, motivar y generar una visión compartida que trascienda las tareas técnicas.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box">🧠</div>
+                <h3>Inteligencia Emocional</h3>
+                <p>Fomento de la autoconciencia y gestión de conflictos basada en el modelo de Daniel Goleman para equipos de alto rendimiento.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">🛡️</div>
+                <h3>Bienestar y Resiliencia</h3>
+                <p>Estrategias proactivas de salud mental para mitigar el agotamiento laboral (burnout) y fortalecer la retención de talento.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="programa">
+        <div class="section-header">
+            <h2>Programa de Coaching Ejecutivo</h2>
+            <p>Un viaje de 12 semanas hacia la excelencia organizacional.</p>
+        </div>
+
+        <div class="coaching-timeline" data-aos="fade-right">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div>
+                    <h3>Fase de Diagnóstico y Autodescubrimiento (Semanas 1-2)</h3>
+                    <p>Identificación de metas individuales, valores y el estilo de liderazgo actual mediante evaluaciones 360°.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div>
+                    <h3>Gestión Emocional y Resiliencia (Semanas 3-6)</h3>
+                    <p>Entrenamiento en control de estrés, comunicación asertiva y herramientas de feedback constructivo.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div>
+                    <h3>Potenciación y Cierre Estratégico (Semanas 7-12)</h3>
+                    <p>Delegación efectiva, empoderamiento de equipos multidisciplinarios y consolidación del plan de crecimiento futuro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kpis">
+        <div class="section-header">
+            <h2>Dashboard de Seguimiento (KPIs)</h2>
+        </div>
+        <div class="kpi-dashboard">
+            <div class="kpi-card" data-aos="zoom-in">
+                <span class="kpi-label">Efectividad del Liderazgo</span>
+                <div class="kpi-value">85%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                <p class="kpi-desc">Mejora proyectada en evaluaciones 360°.</p>
+            </div>
+            <div class="kpi-card" data-aos="zoom-in" data-aos-delay="100">
+                <span class="kpi-label">Reducción de Rotación</span>
+                <div class="kpi-value">30%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 30%;"></div></div>
+                <p class="kpi-desc">Meta de retención de talento clave.</p>
+            </div>
+            <div class="kpi-card" data-aos="zoom-in" data-aos-delay="200">
+                <span class="kpi-label">Clima Organizacional</span>
+                <div class="kpi-value">+45%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
+                <p class="kpi-desc">Aumento en el índice de satisfacción interna.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="inscripcion">
+        <div class="form-wrapper" data-aos="flip-up">
+            <div class="section-header">
+                <h2>Portal de Inscripción</h2>
+                <p>Inicia tu proceso de transformación personal y de equipo.</p>
+            </div>
+            <form>
+                <div class="form-grid">
+                    <div>
+                        <label>Nombre Completo</label>
+                        <input type="text" placeholder="Ej. Fabian Pelaez">
+                    </div>
+                    <div>
+                        <label>Email Corporativo</label>
+                        <input type="email" placeholder="usuario@innovatetech.com">
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <label>Cargo / Rol en la Empresa</label>
+                    <select>
+                        <option>Líder Técnico / Manager</option>
+                        <option>Desarrollador Senior</option>
+                        <option>Coordinador de QA</option>
+                        <option>Recursos Humanos</option>
+                    </select>
+                </div>
+                <div style="margin-top: 20px;">
+                    <label>Prioridad del Programa</label>
+                    <textarea rows="3" placeholder="¿Qué reto principal deseas resolver en tu equipo?"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Solicitar Acceso al Programa</button>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 InnovateTech Solutions, Inc. | Basado en el Análisis de Caso: Liderazgo y Coaching</p>
+    <p>Bogotá - Educación de Calidad | NRC 89893</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+</script>
+
+</body>
+</html>
